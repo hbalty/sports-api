@@ -1,0 +1,1 @@
+const leaguesController = require('../controllers/leagues.controller');
