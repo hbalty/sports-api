@@ -1,11 +1,10 @@
+var teamsService = require('../services/teams.service')
 /**
 * Get all leagues
 */
 exports.getTeams= function(req, res){
-    leaguesService.getAllLeagues().then((data) => {
-        var leagues = {"results": data.results, leagues: {}};
-        res.charset = 'utf-8';
-        res.send(leagues); 
+    teamsService.getTeams().then((teams) => {
+        res.send(teams); 
     })
     .catch(error => {
         res.json(error)
