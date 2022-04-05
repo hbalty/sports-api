@@ -1,11 +1,12 @@
+
 /**
 * @returns Promise
 */
-exports.getTeams = function(){
+exports.getPlayers = function(){
     return new Promise((resolve, reject) => {
-        Team.find({}).populate('players').exec(function(err, teams){
+        Player.find({},(err, players) => {
             if (err) reject(err);
-            resolve(temas)
+            resolve(players)
         })
     })
 }
