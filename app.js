@@ -1,11 +1,40 @@
-const express = require('express')
-const app = express()
-const port = 3000
+// Third part libraries
+var express = require("express")
+var app = express()
+var consign = require('consign')
+var cors = require('cors')
+// custom controllers 
+var config = require('./config.js')
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+//require('./config/constants')
+app.use(cors())
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+// models
+League = require('./models/league')
+Team = require('./models/team');
+Player = require('./models/player')
+
+
+
+
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+app.use(bodyParser.json());
+
+
+
+
+
+consign(config.consign)
+  .include('config')
+  .then('controllers')
+  .then('routes')
+  .into(app)
+
+
+app.listen(config.server.port, () => {
+console.log("Server running on port " + config.server.port  );
+});
+
